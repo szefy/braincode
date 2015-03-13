@@ -9,6 +9,20 @@
         <dex dex="/root/AndroidStudioProjects/MyApplication/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-1683c953386ac08b21ea936eb378620d580a7c17.jar" />
     </item>
     <item
+        jar="/home/rafal/Pulpit/braincode/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/home/rafal/Pulpit/braincode/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-2cdca931cafa4f0796b8e8a5a4a560e00ac15b8d.jar" />
+    </item>
+    <item
+        jar="/home/rafal/Pulpit/braincode/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/home/rafal/Pulpit/braincode/app/build/intermediates/pre-dexed/debug/classes-28b89314537dd38e9ee199a02bb64a3cb92c3a5e.jar" />
+    </item>
+    <item
         jar="/root/AndroidStudioProjects/MyApplication/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -21,6 +35,13 @@
         revision="21.1.2"
         sha1="d84409890828e07d344a3b9b1da545dba9897b51">
         <dex dex="/root/AndroidStudioProjects/MyApplication/app/build/intermediates/pre-dexed/debug/classes-da36119087d3f153eea847252053c6edfc501ad3.jar" />
+    </item>
+    <item
+        jar="/home/rafal/Pulpit/braincode/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/home/rafal/Pulpit/braincode/app/build/intermediates/pre-dexed/debug/classes-ca481e626398ff3da6424bbffe616271eb1b1430.jar" />
     </item>
     <item
         jar="/root/AndroidStudioProjects/MyApplication/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
