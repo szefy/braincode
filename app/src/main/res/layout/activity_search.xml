@@ -15,21 +15,24 @@
             android:layout_gravity="right"
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1">
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
                 android:id="@+id/editTextEnterSearchValue"
-                android:text="@string/searchField" />
+                android:text="@string/search_field"
+                android:layout_gravity="center_vertical" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
-                android:text="@string/submitButton"
-                android:id="@+id/buttonSubmitSearching" />
+                android:text="@string/submit_button"
+                android:id="@+id/buttonSubmitSearching"
+                android:layout_gravity="center_vertical" />
         </LinearLayout>
 
         <LinearLayout
@@ -37,6 +40,33 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.9"></LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_user_button"
+                android:id="@+id/buttonAddUser"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.1"/>
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>
