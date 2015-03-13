@@ -7,4 +7,6 @@
     <string name="submit_button">OK</string>
     <string name="search_field">Enter username</string>
     <string name="add_user_button">Add</string>
+    <string name="status_title">Status:</string>
+    <string name="game_title">Game:</string>
 </resources>
