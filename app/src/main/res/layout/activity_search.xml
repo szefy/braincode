@@ -1,71 +1,95 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffebebeb"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:background="#ffebebeb">
+    tools:context=".MainActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_gravity="right"
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1">
+            android:layout_gravity="right"
+            android:layout_weight="0.1"
+            android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/editTextEnterSearchValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="0.9"
-                android:id="@+id/editTextEnterSearchValue"
-                android:hint="@string/search_field"
-                android:layout_gravity="center_vertical" />
+                android:hint="@string/search_field" />
 
             <Button
+                android:id="@+id/buttonSubmitSearching"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="0.1"
-                android:text="@string/submit_button"
-                android:id="@+id/buttonSubmitSearching"
-                android:layout_gravity="center_vertical" />
+                android:text="@string/submit_button" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"></LinearLayout>
+            android:layout_weight="0.1"
+            android:orientation="horizontal"></LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.7"></LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1">
+            android:orientation="vertical"
+            android:layout_weight="0.7">
 
             <LinearLayout
-                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"></LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"></LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:orientation="horizontal">
+
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.9"></LinearLayout>
+                android:layout_weight="0.9"
+                android:orientation="vertical"></LinearLayout>
 
             <Button
+                android:id="@+id/buttonAddUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/add_user_button"
-                android:id="@+id/buttonAddUser"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="0.1"/>
+                android:layout_weight="0.1"
+                android:text="@string/add_user_button" />
         </LinearLayout>
 
     </LinearLayout>
