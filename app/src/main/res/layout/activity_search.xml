@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
                 android:id="@+id/editTextEnterSearchValue"
-                android:text="@string/search_field"
+                android:hint="@string/search_field"
                 android:layout_gravity="center_vertical" />
 
             <Button
