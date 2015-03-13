@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editTextEnterSearchValue"
+                android:id="@+id/s_editTextEnterSearchValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -30,7 +30,7 @@
                 android:hint="@string/search_field" />
 
             <Button
-                android:id="@+id/buttonSubmitSearching"
+                android:id="@+id/s_buttonSubmitSearching"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -59,14 +59,14 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:id="@+id/imageViewUserLogo"
+                    android:id="@+id/s_imageViewUserLogo"
                     android:layout_weight="3" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Username"
-                    android:id="@+id/textViewUsername"
+                    android:id="@+id/s_textViewUsername"
                     android:layout_weight="2"
                     android:layout_gravity="center_vertical"
                     android:visibility="invisible" />
@@ -82,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/status_title"
-                    android:id="@+id/textViewStatusTitle"
+                    android:id="@+id/s_textViewStatusTitle"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:visibility="invisible" />
@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Status value"
-                    android:id="@+id/textViewStatusValue"
+                    android:id="@+id/s_textViewStatusValue"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="3"
                     android:visibility="invisible" />
@@ -107,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/game_title"
-                    android:id="@+id/textViewGameTitle"
+                    android:id="@+id/s_textViewGameTitle"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:visibility="invisible" />
@@ -116,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Game value"
-                    android:id="@+id/textViewGameValue"
+                    android:id="@+id/s_textViewGameValue"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="3"
                     android:visibility="invisible" />
@@ -136,7 +136,7 @@
                 android:orientation="vertical"></LinearLayout>
 
             <Button
-                android:id="@+id/buttonAddUser"
+                android:id="@+id/s_buttonAddUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
