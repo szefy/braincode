@@ -20,6 +20,10 @@
             android:name=".SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>
+        <activity
+            android:name=".ChannelActivity"
+            android:label="@string/title_activity_channel" >
+        </activity>
     </application>
 
 </manifest>
