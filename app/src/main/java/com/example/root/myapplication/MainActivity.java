@@ -6,6 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
+import com.example.root.myapplication.rest.RestClient;
+import com.example.root.myapplication.rest.model.ChannelResponse;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -20,6 +27,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.channels.Channel;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -28,6 +36,19 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        RestClient.getApiService().getChannel("test_channel", new Callback<ChannelResponse>() {
+            @Override
+            public void success(ChannelResponse channelResponse, Response response) {
+                Log.i("App", channelResponse.toString());
+            }
+            @Override
+            public void failure(RetrofitError error) {
+                Log.i("ERROR", error.getMessage());
+            }
+
+
+        });
 
     }
 
