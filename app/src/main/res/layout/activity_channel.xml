@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/textChannelName" />
+                android:id="@+id/c_textChannelName" />
         </LinearLayout>
 
         <LinearLayout
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/textGame" />
+                android:id="@+id/c_textGame" />
         </LinearLayout>
 
         <LinearLayout
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/textStartDate" />
+                android:id="@+id/c_textStartDate" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

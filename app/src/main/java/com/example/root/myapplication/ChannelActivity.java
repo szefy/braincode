@@ -2,8 +2,17 @@ package com.example.root.myapplication;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.example.root.myapplication.rest.RestClient;
+import com.example.root.myapplication.rest.model.ChannelResponse;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class ChannelActivity extends ActionBarActivity {
@@ -12,6 +21,25 @@ public class ChannelActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_channel);
+
+        final TextView textChannelName = (TextView)findViewById(R.id.c_textChannelName);
+        final TextView textGame = (TextView)findViewById(R.id.c_textGame);
+        final TextView textStartDate = (TextView)findViewById(R.id.c_textStartDate);
+
+
+        RestClient.getApiService().getChannel("test_channel", new Callback<ChannelResponse>() {
+            @Override
+            public void success(ChannelResponse channelResponse, Response response) {
+                textChannelName.setText(channelResponse.getName());
+                textGame.setText(channelResponse.getGame());
+                //textStartDate.setText(channelResponse.get);
+            }
+            @Override
+            public void failure(RetrofitError error) {
+                Log.i("ERROR", error.getMessage());
+            }
+
+        });
     }
 
 

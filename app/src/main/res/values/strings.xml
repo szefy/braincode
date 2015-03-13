@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
     <string name="title_activity_search">Search for Channels</string>
-    <string name="title_activity_channel">Add Channel</string>
+    <string name="title_activity_channel">Channel Information</string>
     <string name="submit_button">OK</string>
     <string name="search_field">Enter username</string>
     <string name="add_user_button">Add</string>
