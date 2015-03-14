@@ -67,23 +67,10 @@ public class MainActivity extends ActionBarActivity {
 
         switch (item.getItemId()) {
             case R.id.action_search:
-//                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
-                startActivity(new Intent(getApplicationContext(), ChannelActivity.class));
+                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    void updateFavourites(){
-        SharedPreferences settings = getSharedPreferences("SETTINGS", 0);
-        Map<String,?> sourceMap = settings.getAll();
-        //favourites = new ArrayList<String>(sourceMap.keySet());
-        Collection<String> values = sourceMap.keySet();
-        favourites = values.toArray(new String[values.size()]);
-
-        for(int i=0;i<favourites.length;i++){
-            Log.i("AAA", favourites[i]);
         }
     }
 }
