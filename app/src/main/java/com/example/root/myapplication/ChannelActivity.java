@@ -3,8 +3,11 @@ package com.example.root.myapplication;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,6 +50,14 @@ public class ChannelActivity extends ActionBarActivity {
         final ImageView logo = (ImageView) findViewById(R.id.c_imageViewUserLogo);
         final TextView textViews = (TextView) findViewById(R.id.s_textViewViewsValue);
 
+        textChannelUrl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(textChannelUrl.getText().toString()));
+                startActivity(browserIntent);
+            }
+        });
+
         Button backButton = (Button) findViewById(R.id.c_buttonBack);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +89,8 @@ public class ChannelActivity extends ActionBarActivity {
                 textFollowers.setText(Integer.toString(channelResponse.getFollowers()));
                 textChannelUrl.setLines(2);
                 textChannelUrl.setText(channelResponse.getUrl());
+                textChannelUrl.setAutoLinkMask(Linkify.ALL);
+                textChannelUrl.setMovementMethod(LinkMovementMethod.getInstance());
                 new DownloadImage(logo).execute(channelResponse.getLogo());
                 textJoined.setText(DateTimeUtils.getLong(channelResponse.getCreated_at()));
                 textViews.setText(Integer.toString(channelResponse.getViews()));

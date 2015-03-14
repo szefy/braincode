@@ -134,22 +134,34 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal">
-
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.9"
-                android:orientation="vertical"></LinearLayout>
+                android:layout_weight="9"
+                android:gravity="bottom|left"
+                android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/c_buttonBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|left"
+                    android:text="@string/back_button" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="9"
+                android:orientation="vertical"
+                android:gravity="bottom|right">
             <Button
                 android:id="@+id/s_buttonAddUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.1"
                 android:text="@string/add_user_button"
-                android:visibility="invisible" />
-        </LinearLayout>
+                android:visibility="invisible" /></LinearLayout>
+
+    </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>
