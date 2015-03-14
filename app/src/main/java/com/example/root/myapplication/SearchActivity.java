@@ -51,6 +51,15 @@ public class SearchActivity extends ActionBarActivity {
 
         okButton.setOnClickListener(onOkClickListener);
         addButton.setOnClickListener(onAddClickListener);
+        Button backButton = (Button) findViewById(R.id.c_buttonBack);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
 
