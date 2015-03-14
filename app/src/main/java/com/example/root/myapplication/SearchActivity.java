@@ -1,5 +1,6 @@
 package com.example.root.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,10 +9,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.root.myapplication.rest.RestClient;
 import com.example.root.myapplication.rest.model.ChannelResponse;
@@ -25,7 +28,6 @@ import retrofit.client.Response;
 public class SearchActivity extends ActionBarActivity {
     private EditText channelToSearch;
     private ImageView logo;
-    private TextView username;
     private TextView statusTitle;
     private TextView statusValue;
     private TextView gameTitle;
@@ -38,14 +40,14 @@ public class SearchActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         Button okButton = (Button) findViewById(R.id.s_buttonSubmitSearching);
-        Button addButton = (Button) findViewById(R.id.s_buttonAddUser);
+        addButton = (Button) findViewById(R.id.s_buttonAddUser);
         channelToSearch = (EditText) findViewById(R.id.s_editTextEnterSearchValue);
         logo = (ImageView) findViewById(R.id.s_imageViewUserLogo);
-        username = (TextView) findViewById(R.id.s_textViewUsername);
         statusTitle = (TextView) findViewById(R.id.s_textViewStatusTitle);
         statusValue = (TextView) findViewById(R.id.s_textViewStatusValue);
         gameTitle = (TextView) findViewById(R.id.s_textViewGameTitle);
         gameValue = (TextView) findViewById(R.id.s_textViewGameValue);
+        userNotFound = (TextView) findViewById(R.id.s_textViewNoItemFound);
 
         okButton.setOnClickListener(onOkClickListener);
         addButton.setOnClickListener(onAddClickListener);
@@ -79,35 +81,42 @@ public class SearchActivity extends ActionBarActivity {
             RestClient.getApiService().getChannel(channelToSearch.getText().toString(), new Callback<ChannelResponse>() {
                 @Override
                 public void success(ChannelResponse channelResponse, Response response) {
-                    username.setText(channelToSearch.getText());
-                    username.setVisibility(View.VISIBLE);
-                    statusTitle.setVisibility(View.VISIBLE);
-                    statusValue.setText(channelResponse.getStatus());
-                    statusValue.setVisibility(View.VISIBLE);
-                    gameTitle.setVisibility(View.VISIBLE);
-                    gameValue.setText(channelResponse.getGame());
-                    gameValue.setVisibility(View.VISIBLE);
+                    hideKeyboard();
+                    if (channelResponse.getStatus() != null) {
+                        statusTitle.setVisibility(View.VISIBLE);
+                        statusValue.setText(channelResponse.getStatus());
+                        statusValue.setVisibility(View.VISIBLE);
+                    }
+                    if (channelResponse.getGame() != null) {
+                        gameTitle.setVisibility(View.VISIBLE);
+                        gameValue.setText(channelResponse.getGame());
+                        gameValue.setVisibility(View.VISIBLE);
+                    }
                     addButton = (Button) findViewById(R.id.s_buttonAddUser);
                     addButton.setOnClickListener(onAddClickListener);
                     addButton.setVisibility(View.VISIBLE);
                     new DownloadImage(logo).execute(channelResponse.getLogo());
+                    logo.setVisibility(View.VISIBLE);
                     channelToSearch.setOnClickListener(onSearchFieldClickListener);
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
-                    userNotFound = (TextView) findViewById(R.id.s_textViewNoItemFound);
+                    hideKeyboard();
                     userNotFound.setVisibility(View.VISIBLE);
                     channelToSearch.setOnClickListener(onSearchFieldClickListener);
+                    if (error.getCause() != null && error.getMessage() != null) {
+                        Toast.makeText(SearchActivity.this, error.getCause().getMessage(), Toast.LENGTH_LONG).show();
+                        Log.i("ERROR", error.getMessage());
+                    }
                 }
-
             });
         }
     };
 
     private View.OnClickListener onAddClickListener = new View.OnClickListener() {
         public void onClick(View v) {
-            String name = username.getText().toString();
+            String name = channelToSearch.getText().toString();
             SharedPreferences settings = getSharedPreferences("SETTINGS", 0);
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt(name, 1);
@@ -121,7 +130,6 @@ public class SearchActivity extends ActionBarActivity {
         @Override
         public void onClick(View v) {
             logo.setVisibility(View.INVISIBLE);
-            username.setVisibility(View.INVISIBLE);
             statusTitle.setVisibility(View.INVISIBLE);
             statusValue.setVisibility(View.INVISIBLE);
             gameTitle.setVisibility(View.INVISIBLE);
@@ -130,4 +138,13 @@ public class SearchActivity extends ActionBarActivity {
             userNotFound.setVisibility(View.INVISIBLE);
         }
     };
+
+    private void hideKeyboard() {
+        // Check if no view has focus:
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
 }
