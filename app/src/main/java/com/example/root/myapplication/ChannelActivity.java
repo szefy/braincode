@@ -1,5 +1,6 @@
 package com.example.root.myapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -27,6 +28,10 @@ public class ChannelActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_channel);
 
+        //get extra channel name
+        Intent intent = getIntent();
+        String channelName = intent.getStringExtra("channelName");
+
         final TextView textChannelName = (TextView)findViewById(R.id.c_textChannelName);
         final TextView textGame = (TextView)findViewById(R.id.c_textViewGameValue);
         final TextView textStreamStatus = (TextView)findViewById(R.id.c_textStreamStatus);
@@ -38,7 +43,7 @@ public class ChannelActivity extends ActionBarActivity {
         final ImageView logo = (ImageView) findViewById(R.id.c_imageViewUserLogo);
         final TextView textViews = (TextView) findViewById(R.id.s_textViewViewsValue);
 
-        RestClient.getApiService().getChannel("meonester", new Callback<ChannelResponse>() {
+        RestClient.getApiService().getChannel(channelName, new Callback<ChannelResponse>() {
             @Override
             public void success(ChannelResponse channelResponse, Response response) {
                 textChannelName.setText(channelResponse.getName());
@@ -58,7 +63,7 @@ public class ChannelActivity extends ActionBarActivity {
 
         });
 
-        RestClient.getApiService().getStream("meonester", new Callback<StreamResponse>() {
+        RestClient.getApiService().getStream(channelName, new Callback<StreamResponse>() {
             @Override
             public void success(StreamResponse streamResponse, Response response) {
                 if (streamResponse.getStream() == null) {
