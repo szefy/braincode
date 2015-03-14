@@ -32,6 +32,8 @@ public class ChannelActivity extends ActionBarActivity {
         Intent intent = getIntent();
         String channelName = intent.getStringExtra("channelName");
 
+        setTitle(channelName);
+
         final TextView textChannelName = (TextView)findViewById(R.id.c_textChannelName);
         final TextView textGame = (TextView)findViewById(R.id.c_textViewGameValue);
         final TextView textStreamStatus = (TextView)findViewById(R.id.c_textStreamStatus);
