@@ -47,8 +47,6 @@ public class ChannelActivity extends ActionBarActivity {
                 textFollowers.setText(Integer.toString(channelResponse.getFollowers()));
                 textChannelUrl.setText(channelResponse.getUrl());
                 new DownloadImage(logo).execute(channelResponse.getLogo());
-                System.out.println("Long: "+DateTimeUtils.getLong(channelResponse.getCreated_at()));
-                System.out.println("SHORT: "+DateTimeUtils.getShort(channelResponse.getCreated_at()));
                 textJoined.setText(DateTimeUtils.getLong(channelResponse.getCreated_at()));
                 textViews.setText(Integer.toString(channelResponse.getViews()));
             }
