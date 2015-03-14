@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
         ArrayList<String> favouriteList = new ArrayList<String>();
         favouriteList.addAll( Arrays.asList(favourites) );
 
-        listAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, favouriteList);
+        listAdapter = new MyArrayAdapter(this, favourites);
 
         mainListView.setAdapter( listAdapter );
 
@@ -48,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), ChannelActivity.class);
-                intent.putExtra("channelName", ((TextView)view).getText().toString());
+                intent.putExtra("channelName", ((TextView)view.findViewById(R.id.rowTextView)).getText().toString());
                 startActivity(intent);
                 finish();
             }
