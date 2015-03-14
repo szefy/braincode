@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.root.myapplication.rest.RestClient;
 import com.example.root.myapplication.rest.model.ChannelResponse;
+import com.example.root.myapplication.rest.utils.DownloadImage;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -84,6 +85,7 @@ public class SearchActivity extends ActionBarActivity {
                     addButton = (Button) findViewById(R.id.s_buttonAddUser);
                     addButton.setOnClickListener(onAddClickListener);
                     addButton.setVisibility(View.VISIBLE);
+                    new DownloadImage(logo).execute(channelResponse.getLogo());
                 }
 
                 @Override

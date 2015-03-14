@@ -31,7 +31,7 @@ public class ChannelActivity extends ActionBarActivity {
         final TextView textStreamCreate = (TextView)findViewById(R.id.c_textStreamCreate);
 
 
-        RestClient.getApiService().getChannel("esl_lol", new Callback<ChannelResponse>() {
+        RestClient.getApiService().getChannel("test_channel", new Callback<ChannelResponse>() {
             @Override
             public void success(ChannelResponse channelResponse, Response response) {
                 textChannelName.setText(channelResponse.getName());
@@ -48,10 +48,10 @@ public class ChannelActivity extends ActionBarActivity {
         RestClient.getApiService().getStream("esl_lol", new Callback<StreamResponse>() {
             @Override
             public void success(StreamResponse streamResponse, Response response) {
-                if(streamResponse.getStream() == null){
+                if (streamResponse.getStream() == null) {
                     textStreamStatus.setText("Stream offline.");
                     textStreamStatus.setTextColor(Color.RED);
-                }else{
+                } else {
                     textStreamStatus.setText("Stream online.");
                     textStreamStatus.setTextColor(Color.GREEN);
                     textStreamGame.setText(streamResponse.getStream().getGame());

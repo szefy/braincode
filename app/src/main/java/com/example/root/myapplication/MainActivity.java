@@ -37,19 +37,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RestClient.getApiService().getChannel("test_channel", new Callback<ChannelResponse>() {
-            @Override
-            public void success(ChannelResponse channelResponse, Response response) {
-                Log.i("App", channelResponse.toString());
-            }
-            @Override
-            public void failure(RetrofitError error) {
-                Log.i("ERROR", error.getMessage());
-            }
-
-
-        });
-
     }
 
 

@@ -1,8 +1,8 @@
 package com.example.root.myapplication.rest.model;
 
+import android.util.Base64;
+
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by jbis on 2015-03-13.
@@ -20,26 +20,10 @@ public class ChannelResponse {
     private String name;
     private Date created_at;
     private Date updated_at;
+    private String logo;
     private String url;
     private int views;
     private int followers;
-    private List<Map<String,String>> links;
-
-    public List<Map<String, String>> getLinks() {
-        return links;
-    }
-
-    public void setLinks(List<Map<String, String>> links) {
-        this.links = links;
-    }
-
-    public boolean isMature() {
-        return mature;
-    }
-
-    public void setMature(boolean mature) {
-        this.mature = mature;
-    }
 
     public int getFollowers() {
         return followers;
@@ -55,6 +39,22 @@ public class ChannelResponse {
 
     public void setViews(int views) {
         this.views = views;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     public Date getUpdated_at() {
@@ -73,52 +73,12 @@ public class ChannelResponse {
         this.created_at = created_at;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getName() {
+        return name;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getDisplay_name() {
-        return display_name;
-    }
-
-    public void setDisplay_name(String display_name) {
-        this.display_name = display_name;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getBroadcaster_language() {
-        return broadcaster_language;
-    }
-
-    public void setBroadcaster_language(String broadcaster_language) {
-        this.broadcaster_language = broadcaster_language;
-    }
-
-    public String getGame() {
-        return game;
-    }
-
-    public void setGame(String game) {
-        this.game = game;
-    }
-
-    public int getDelay() {
-        return delay;
-    }
-
-    public void setDelay(int delay) {
-        this.delay = delay;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int get_id() {
@@ -129,20 +89,60 @@ public class ChannelResponse {
         this._id = _id;
     }
 
-    public String getName() {
-        return name;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public String getUrl() {
-        return url;
+    public int getDelay() {
+        return delay;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setDelay(int delay) {
+        this.delay = delay;
+    }
+
+    public String getGame() {
+        return game;
+    }
+
+    public void setGame(String game) {
+        this.game = game;
+    }
+
+    public String getDisplay_name() {
+        return display_name;
+    }
+
+    public void setDisplay_name(String display_name) {
+        this.display_name = display_name;
+    }
+
+    public String getBroadcaster_language() {
+        return broadcaster_language;
+    }
+
+    public void setBroadcaster_language(String broadcaster_language) {
+        this.broadcaster_language = broadcaster_language;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public boolean isMature() {
+        return mature;
+    }
+
+    public void setMature(boolean mature) {
+        this.mature = mature;
     }
 
     @Override
@@ -159,10 +159,10 @@ public class ChannelResponse {
                 ", name='" + name + '\'' +
                 ", created_at=" + created_at +
                 ", updated_at=" + updated_at +
+                ", logo=" + logo +
                 ", url='" + url + '\'' +
                 ", views=" + views +
                 ", followers=" + followers +
-                ", links=" + links +
                 '}';
     }
 }
