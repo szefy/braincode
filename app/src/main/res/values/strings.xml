@@ -16,4 +16,5 @@
     <string name="language_title">Language:</string>
     <string name="url_title">Channel link:</string>
     <string name="remove_user_button">Remove</string>
+    <string name="back_button">Back</string>
 </resources>

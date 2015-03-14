@@ -31,12 +31,6 @@
                 android:layout_column="0"
                 android:paddingRight="@dimen/table_row_margin"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/c_textChannelName"
-                android:layout_gravity="center_vertical"
-                android:layout_column="1"/>
         </TableRow>
         </TableLayout>
 
@@ -199,7 +193,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/c_textViewUrlValue"
                     android:layout_gravity="center_vertical"
-                    android:layout_column="1" />
+                    android:layout_column="1"
+                    android:maxLines="2"/>
             </TableRow>
         </TableLayout>
 
@@ -213,7 +208,17 @@
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="9"></LinearLayout>
+                android:layout_weight="9"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/back_button"
+                    android:id="@+id/c_buttonBack"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/c_buttonRemove"

@@ -37,7 +37,6 @@ public class ChannelActivity extends ActionBarActivity {
 
         setTitle(channelName);
 
-        final TextView textChannelName = (TextView)findViewById(R.id.c_textChannelName);
         final TextView textGame = (TextView)findViewById(R.id.c_textViewGameValue);
         final TextView textStreamStatus = (TextView)findViewById(R.id.c_textStreamStatus);
 //        final TextView textStreamGame = (TextView)findViewById(R.id.c_textStreamGame);
@@ -47,6 +46,16 @@ public class ChannelActivity extends ActionBarActivity {
         final TextView textChannelUrl = (TextView) findViewById(R.id.c_textViewUrlValue);
         final ImageView logo = (ImageView) findViewById(R.id.c_imageViewUserLogo);
         final TextView textViews = (TextView) findViewById(R.id.s_textViewViewsValue);
+
+        Button backButton = (Button) findViewById(R.id.c_buttonBack);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         Button removeButton = (Button)findViewById(R.id.c_buttonRemove);
         removeButton.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +73,6 @@ public class ChannelActivity extends ActionBarActivity {
         RestClient.getApiService().getChannel(channelName, new Callback<ChannelResponse>() {
             @Override
             public void success(ChannelResponse channelResponse, Response response) {
-                textChannelName.setText(channelResponse.getName());
                 textGame.setText(channelResponse.getGame());
                 textLanguage.setText(channelResponse.getBroadcaster_language());
                 textFollowers.setText(Integer.toString(channelResponse.getFollowers()));
@@ -75,7 +83,7 @@ public class ChannelActivity extends ActionBarActivity {
             }
             @Override
             public void failure(RetrofitError error) {
-                textChannelName.setText("Error getting channel info");
+//                textChannelName.setText("Error getting channel info");
                 Log.i("ERROR", error.getMessage());
             }
 
@@ -90,8 +98,7 @@ public class ChannelActivity extends ActionBarActivity {
                 } else {
                     textStreamStatus.setText("Stream online.");
                     textStreamStatus.setTextColor(Color.GREEN);
-//                    textStreamGame.setText(streamResponse.getStream().getGame());
-//                    textStreamCreate.setText(streamResponse.getStream().getCreated_at().toString());
+//                    System.out.println(DateTimeUtils.getLong(streamResponse.getStream().getCreated_at()));
                 }
             }
 
