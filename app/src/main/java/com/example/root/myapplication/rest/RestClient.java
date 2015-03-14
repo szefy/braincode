@@ -1,20 +1,18 @@
 package com.example.root.myapplication.rest;
 
-import com.example.root.myapplication.rest.service.ApiService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.example.root.myapplication.rest.service.ApiChannels;
 import com.squareup.okhttp.OkHttpClient;
 
+import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
-import retrofit.converter.GsonConverter;
 
 /**
  * Created by jbis on 2015-03-13.
  */
 public class RestClient {
 
-    private static ApiService apiService;
+    private static ApiChannels apiService;
     private static final String BASE_URL= "https://api.twitch.tv/kraken";
 
     static {
@@ -23,17 +21,25 @@ public class RestClient {
 
     private RestClient() {}
 
-    public static ApiService getApiService() {
+    public static ApiChannels getApiService() {
         return apiService;
     }
 
     private static void setupRestClient() {
+        RequestInterceptor requestInterceptor = new RequestInterceptor() {
+            @Override
+            public void intercept(RequestFacade request) {
+                request.addHeader("Accept", "application/vnd.github.v3.full+json");
+            }
+        };
+
         RestAdapter.Builder builder = new RestAdapter.Builder()
                 .setEndpoint(BASE_URL)
+                .setRequestInterceptor(requestInterceptor)
                 .setClient(new OkClient(new OkHttpClient()))
                 .setLogLevel(RestAdapter.LogLevel.FULL);
 
         RestAdapter restAdapter = builder.build();
-        apiService = restAdapter.create(ApiService.class);
+        apiService = restAdapter.create(ApiChannels.class);
     }
 }
