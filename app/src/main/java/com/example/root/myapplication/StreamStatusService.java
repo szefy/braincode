@@ -82,6 +82,7 @@ public class StreamStatusService extends Service{
         Notification noti = new Notification.Builder(getApplicationContext())
                 .setContentTitle(channelTitle + " started streaming")
                 .setContentText(channelTitle + " started streaming")
+                .setSmallIcon(R.drawable.icon_search)
                 .build();
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
