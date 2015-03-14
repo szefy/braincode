@@ -113,6 +113,7 @@ public class SearchActivity extends ActionBarActivity {
             editor.putInt(name, 1);
             editor.apply();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
         }
     };
 

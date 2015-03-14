@@ -50,6 +50,7 @@ public class MainActivity extends ActionBarActivity {
                 Intent intent = new Intent(getApplicationContext(), ChannelActivity.class);
                 intent.putExtra("channelName", ((TextView)view).getText().toString());
                 startActivity(intent);
+                finish();
             }
         });
     }
