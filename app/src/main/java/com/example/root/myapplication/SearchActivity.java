@@ -1,17 +1,48 @@
 package com.example.root.myapplication;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.root.myapplication.rest.RestClient;
+import com.example.root.myapplication.rest.model.ChannelResponse;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class SearchActivity extends ActionBarActivity {
+    private EditText channelToSearch;
+    private ImageView logo;
+    private TextView username;
+    private TextView statusTitle;
+    private TextView statusValue;
+    private TextView gameTitle;
+    private TextView gameValue;
+    private Button addButton;
+    private TextView userNotFound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        Button okButton = (Button) findViewById(R.id.s_buttonSubmitSearching);
+        channelToSearch = (EditText) findViewById(R.id.s_editTextEnterSearchValue);
+        logo = (ImageView) findViewById(R.id.s_imageViewUserLogo);
+        username = (TextView) findViewById(R.id.s_textViewUsername);
+        statusTitle = (TextView) findViewById(R.id.s_textViewStatusTitle);
+        statusValue = (TextView) findViewById(R.id.s_textViewStatusValue);
+        gameTitle = (TextView) findViewById(R.id.s_textViewGameTitle);
+        gameValue = (TextView) findViewById(R.id.s_textViewGameValue);
+        okButton.setOnClickListener(onOkClickListener);
     }
 
 
@@ -36,4 +67,38 @@ public class SearchActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private View.OnClickListener onOkClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            RestClient.getApiService().getChannel(channelToSearch.getText().toString(), new Callback<ChannelResponse>() {
+                @Override
+                public void success(ChannelResponse channelResponse, Response response) {
+                    username.setText(channelToSearch.getText());
+                    username.setVisibility(View.VISIBLE);
+                    statusTitle.setVisibility(View.VISIBLE);
+                    statusValue.setText(channelResponse.getStatus());
+                    statusValue.setVisibility(View.VISIBLE);
+                    gameTitle.setVisibility(View.VISIBLE);
+                    gameValue.setText(channelResponse.getGame());
+                    gameValue.setVisibility(View.VISIBLE);
+                    addButton = (Button) findViewById(R.id.s_buttonAddUser);
+                    addButton.setOnClickListener(onAddClickListener);
+                    addButton.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    userNotFound = (TextView) findViewById(R.id.s_textViewNoItemFound);
+                    userNotFound.setVisibility(View.VISIBLE);
+                }
+
+            });
+        }
+    };
+
+    private View.OnClickListener onAddClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            System.out.println("TO BE CONTINUED...");
+        }
+    };
 }
