@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.root.myapplication.rest.RestClient;
 import com.example.root.myapplication.rest.model.ChannelResponse;
@@ -100,6 +101,8 @@ public class SearchActivity extends ActionBarActivity {
                 public void failure(RetrofitError error) {
                     userNotFound.setVisibility(View.VISIBLE);
                     channelToSearch.setOnClickListener(onSearchFieldClickListener);
+                    Toast.makeText(SearchActivity.this, error.getCause().getMessage(), Toast.LENGTH_LONG).show();
+                    Log.i("ERROR", error.getMessage());
                 }
 
             });

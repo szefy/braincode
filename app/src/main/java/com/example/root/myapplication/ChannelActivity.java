@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.root.myapplication.rest.RestClient;
 import com.example.root.myapplication.rest.model.ChannelResponse;
@@ -83,7 +84,7 @@ public class ChannelActivity extends ActionBarActivity {
             }
             @Override
             public void failure(RetrofitError error) {
-//                textChannelName.setText("Error getting channel info");
+                Toast.makeText(ChannelActivity.this, error.getCause().getMessage(), Toast.LENGTH_LONG).show();
                 Log.i("ERROR", error.getMessage());
             }
 
@@ -103,6 +104,7 @@ public class ChannelActivity extends ActionBarActivity {
 
             @Override
             public void failure(RetrofitError error) {
+                Toast.makeText(ChannelActivity.this, error.getCause().getMessage(), Toast.LENGTH_LONG).show();
                 Log.i("ERROR", error.getMessage());
             }
 
