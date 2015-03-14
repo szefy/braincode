@@ -1,5 +1,6 @@
 package com.example.root.myapplication;
 
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,8 @@ public class ChannelActivity extends ActionBarActivity {
         final TextView textChannelName = (TextView)findViewById(R.id.c_textChannelName);
         final TextView textGame = (TextView)findViewById(R.id.c_textGame);
         final TextView textStreamStatus = (TextView)findViewById(R.id.c_textStreamStatus);
+        final TextView textStreamGame = (TextView)findViewById(R.id.c_textStreamGame);
+        final TextView textStreamCreate = (TextView)findViewById(R.id.c_textStreamCreate);
 
 
         RestClient.getApiService().getChannel("esl_lol", new Callback<ChannelResponse>() {
@@ -36,6 +39,7 @@ public class ChannelActivity extends ActionBarActivity {
             }
             @Override
             public void failure(RetrofitError error) {
+                textChannelName.setText("Error getting channel info");
                 Log.i("ERROR", error.getMessage());
             }
 
@@ -46,9 +50,12 @@ public class ChannelActivity extends ActionBarActivity {
             public void success(StreamResponse streamResponse, Response response) {
                 if(streamResponse.getStream() == null){
                     textStreamStatus.setText("Stream offline.");
+                    textStreamStatus.setTextColor(Color.RED);
                 }else{
                     textStreamStatus.setText("Stream online.");
-
+                    textStreamStatus.setTextColor(Color.GREEN);
+                    textStreamGame.setText(streamResponse.getStream().getGame());
+                    textStreamCreate.setText(streamResponse.getStream().getCreated_at().toString());
                 }
             }
 
