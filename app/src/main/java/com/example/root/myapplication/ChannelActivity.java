@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.root.myapplication.rest.RestClient;
 import com.example.root.myapplication.rest.model.ChannelResponse;
+import com.example.root.myapplication.rest.model.StreamResponse;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -24,16 +25,33 @@ public class ChannelActivity extends ActionBarActivity {
 
         final TextView textChannelName = (TextView)findViewById(R.id.c_textChannelName);
         final TextView textGame = (TextView)findViewById(R.id.c_textGame);
-        final TextView textStartDate = (TextView)findViewById(R.id.c_textStartDate);
+        final TextView textStreamStatus = (TextView)findViewById(R.id.c_textStreamStatus);
 
 
-        RestClient.getApiService().getChannel("test_channel", new Callback<ChannelResponse>() {
+        RestClient.getApiService().getChannel("esl_lol", new Callback<ChannelResponse>() {
             @Override
             public void success(ChannelResponse channelResponse, Response response) {
                 textChannelName.setText(channelResponse.getName());
                 textGame.setText(channelResponse.getGame());
-                //textStartDate.setText(channelResponse.get);
             }
+            @Override
+            public void failure(RetrofitError error) {
+                Log.i("ERROR", error.getMessage());
+            }
+
+        });
+
+        RestClient.getApiService().getStream("esl_lol", new Callback<StreamResponse>() {
+            @Override
+            public void success(StreamResponse streamResponse, Response response) {
+                if(streamResponse.getStream() == null){
+                    textStreamStatus.setText("Stream offline.");
+                }else{
+                    textStreamStatus.setText("Stream online.");
+
+                }
+            }
+
             @Override
             public void failure(RetrofitError error) {
                 Log.i("ERROR", error.getMessage());

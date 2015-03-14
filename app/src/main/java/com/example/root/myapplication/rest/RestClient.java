@@ -1,6 +1,6 @@
 package com.example.root.myapplication.rest;
 
-import com.example.root.myapplication.rest.service.ApiChannels;
+import com.example.root.myapplication.rest.service.ApiService;
 import com.squareup.okhttp.OkHttpClient;
 
 import retrofit.RequestInterceptor;
@@ -12,7 +12,7 @@ import retrofit.client.OkClient;
  */
 public class RestClient {
 
-    private static ApiChannels apiService;
+    private static ApiService apiService;
     private static final String BASE_URL= "https://api.twitch.tv/kraken";
 
     static {
@@ -21,7 +21,7 @@ public class RestClient {
 
     private RestClient() {}
 
-    public static ApiChannels getApiService() {
+    public static ApiService getApiService() {
         return apiService;
     }
 
@@ -40,6 +40,6 @@ public class RestClient {
                 .setLogLevel(RestAdapter.LogLevel.FULL);
 
         RestAdapter restAdapter = builder.build();
-        apiService = restAdapter.create(ApiChannels.class);
+        apiService = restAdapter.create(ApiService.class);
     }
 }
