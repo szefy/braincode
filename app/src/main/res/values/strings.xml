@@ -10,4 +10,10 @@
     <string name="status_title">Status:</string>
     <string name="game_title">Game:</string>
     <string name="user_not_found_message">User not found.</string>
+    <string name="on_twitch_since_title">Joined:</string>
+    <string name="views_title">Views:</string>
+    <string name="followers_title">Followers:</string>
+    <string name="language_title">Language:</string>
+    <string name="url_title">Channel link:</string>
+    <string name="remove_user_button">Remove</string>
 </resources>

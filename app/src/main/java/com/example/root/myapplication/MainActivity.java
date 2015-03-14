@@ -57,8 +57,8 @@ public class MainActivity extends ActionBarActivity {
 
         switch (item.getItemId()) {
             case R.id.action_search:
-                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
-//                startActivity(new Intent(getApplicationContext(), ChannelActivity.class));
+//                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+                startActivity(new Intent(getApplicationContext(), ChannelActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

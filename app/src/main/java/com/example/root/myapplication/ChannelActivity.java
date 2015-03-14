@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.root.myapplication.rest.RestClient;
 import com.example.root.myapplication.rest.model.ChannelResponse;
 import com.example.root.myapplication.rest.model.StreamResponse;
 import com.example.root.myapplication.rest.utils.DateTimeUtils;
+import com.example.root.myapplication.rest.utils.DownloadImage;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -26,19 +28,29 @@ public class ChannelActivity extends ActionBarActivity {
         setContentView(R.layout.activity_channel);
 
         final TextView textChannelName = (TextView)findViewById(R.id.c_textChannelName);
-        final TextView textGame = (TextView)findViewById(R.id.c_textGame);
+        final TextView textGame = (TextView)findViewById(R.id.c_textViewGameValue);
         final TextView textStreamStatus = (TextView)findViewById(R.id.c_textStreamStatus);
-        final TextView textStreamGame = (TextView)findViewById(R.id.c_textStreamGame);
-        final TextView textStreamCreate = (TextView)findViewById(R.id.c_textStreamCreate);
+//        final TextView textStreamGame = (TextView)findViewById(R.id.c_textStreamGame);
+        final TextView textJoined = (TextView)findViewById(R.id.c_textViewOnTwitchSinceValue);
+        final TextView textLanguage = (TextView) findViewById(R.id.c_textViewLanguageValue);
+        final TextView textFollowers = (TextView) findViewById(R.id.c_textViewFollowersValue);
+        final TextView textChannelUrl = (TextView) findViewById(R.id.c_textViewUrlValue);
+        final ImageView logo = (ImageView) findViewById(R.id.c_imageViewUserLogo);
+        final TextView textViews = (TextView) findViewById(R.id.s_textViewViewsValue);
 
-
-        RestClient.getApiService().getChannel("test_channel", new Callback<ChannelResponse>() {
+        RestClient.getApiService().getChannel("meonester", new Callback<ChannelResponse>() {
             @Override
             public void success(ChannelResponse channelResponse, Response response) {
                 textChannelName.setText(channelResponse.getName());
                 textGame.setText(channelResponse.getGame());
+                textLanguage.setText(channelResponse.getBroadcaster_language());
+                textFollowers.setText(Integer.toString(channelResponse.getFollowers()));
+                textChannelUrl.setText(channelResponse.getUrl());
+                new DownloadImage(logo).execute(channelResponse.getLogo());
                 System.out.println("Long: "+DateTimeUtils.getLong(channelResponse.getCreated_at()));
                 System.out.println("SHORT: "+DateTimeUtils.getShort(channelResponse.getCreated_at()));
+                textJoined.setText(DateTimeUtils.getLong(channelResponse.getCreated_at()));
+                textViews.setText(Integer.toString(channelResponse.getViews()));
             }
             @Override
             public void failure(RetrofitError error) {
@@ -48,7 +60,7 @@ public class ChannelActivity extends ActionBarActivity {
 
         });
 
-        RestClient.getApiService().getStream("esl_lol", new Callback<StreamResponse>() {
+        RestClient.getApiService().getStream("meonester", new Callback<StreamResponse>() {
             @Override
             public void success(StreamResponse streamResponse, Response response) {
                 if (streamResponse.getStream() == null) {
@@ -57,8 +69,8 @@ public class ChannelActivity extends ActionBarActivity {
                 } else {
                     textStreamStatus.setText("Stream online.");
                     textStreamStatus.setTextColor(Color.GREEN);
-                    textStreamGame.setText(streamResponse.getStream().getGame());
-                    textStreamCreate.setText(streamResponse.getStream().getCreated_at().toString());
+//                    textStreamGame.setText(streamResponse.getStream().getGame());
+//                    textStreamCreate.setText(streamResponse.getStream().getCreated_at().toString());
                 }
             }
 
