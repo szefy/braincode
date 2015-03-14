@@ -39,7 +39,6 @@ public class ChannelActivity extends ActionBarActivity {
 
         final TextView textGame = (TextView)findViewById(R.id.c_textViewGameValue);
         final TextView textStreamStatus = (TextView)findViewById(R.id.c_textStreamStatus);
-//        final TextView textStreamGame = (TextView)findViewById(R.id.c_textStreamGame);
         final TextView textJoined = (TextView)findViewById(R.id.c_textViewOnTwitchSinceValue);
         final TextView textLanguage = (TextView) findViewById(R.id.c_textViewLanguageValue);
         final TextView textFollowers = (TextView) findViewById(R.id.c_textViewFollowersValue);
@@ -76,6 +75,7 @@ public class ChannelActivity extends ActionBarActivity {
                 textGame.setText(channelResponse.getGame());
                 textLanguage.setText(channelResponse.getBroadcaster_language());
                 textFollowers.setText(Integer.toString(channelResponse.getFollowers()));
+                textChannelUrl.setLines(2);
                 textChannelUrl.setText(channelResponse.getUrl());
                 new DownloadImage(logo).execute(channelResponse.getLogo());
                 textJoined.setText(DateTimeUtils.getLong(channelResponse.getCreated_at()));
@@ -98,7 +98,6 @@ public class ChannelActivity extends ActionBarActivity {
                 } else {
                     textStreamStatus.setText("Stream online.");
                     textStreamStatus.setTextColor(Color.GREEN);
-//                    System.out.println(DateTimeUtils.getLong(streamResponse.getStream().getCreated_at()));
                 }
             }
 
