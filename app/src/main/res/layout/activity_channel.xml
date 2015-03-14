@@ -13,56 +13,103 @@
         android:layout_height="fill_parent">
 
         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@+id/c_imageViewUserLogo"
+                android:layout_weight="3"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:id="@+id/c_textChannelName"
+                android:layout_weight="2"
+                android:layout_gravity="center_vertical"
+                android:visibility="visible"
+                android:paddingLeft="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_title"
+                android:id="@+id/c_textViewStatusTitle"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
                 android:id="@+id/textView"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/c_textChannelName" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp">
+                android:id="@+id/c_textGame"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/c_textGame" />
+                android:id="@+id/textView3"
+                android:layout_weight="3"
+                android:layout_gravity="center_vertical" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="82dp"></LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/c_textStreamStatus" />
+                android:id="@+id/c_textStreamStatus"
+                android:layout_weight="1"
+                android:visibility="visible"
+                android:text="@string/status_title"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView2"
+                android:layout_weight="3"
+                android:layout_gravity="center_vertical" />
         </LinearLayout>
 
         <LinearLayout

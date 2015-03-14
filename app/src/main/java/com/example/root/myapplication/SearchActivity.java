@@ -91,12 +91,14 @@ public class SearchActivity extends ActionBarActivity {
                     addButton.setOnClickListener(onAddClickListener);
                     addButton.setVisibility(View.VISIBLE);
                     new DownloadImage(logo).execute(channelResponse.getLogo());
+                    channelToSearch.setOnClickListener(onSearchFieldClickListener);
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
                     userNotFound = (TextView) findViewById(R.id.s_textViewNoItemFound);
                     userNotFound.setVisibility(View.VISIBLE);
+                    channelToSearch.setOnClickListener(onSearchFieldClickListener);
                 }
 
             });
@@ -111,6 +113,20 @@ public class SearchActivity extends ActionBarActivity {
             editor.putInt(name, 1);
             editor.apply();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+    };
+
+    private View.OnClickListener onSearchFieldClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            logo.setVisibility(View.INVISIBLE);
+            username.setVisibility(View.INVISIBLE);
+            statusTitle.setVisibility(View.INVISIBLE);
+            statusValue.setVisibility(View.INVISIBLE);
+            gameTitle.setVisibility(View.INVISIBLE);
+            gameValue.setVisibility(View.INVISIBLE);
+            addButton.setVisibility(View.INVISIBLE);
+            userNotFound.setVisibility(View.INVISIBLE);
         }
     };
 }
