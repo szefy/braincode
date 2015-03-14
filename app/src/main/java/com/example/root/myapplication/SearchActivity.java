@@ -1,5 +1,6 @@
 package com.example.root.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -79,6 +81,7 @@ public class SearchActivity extends ActionBarActivity {
             RestClient.getApiService().getChannel(channelToSearch.getText().toString(), new Callback<ChannelResponse>() {
                 @Override
                 public void success(ChannelResponse channelResponse, Response response) {
+                    hideKeyboard();
                     if (channelResponse.getStatus() != null) {
                         statusTitle.setVisibility(View.VISIBLE);
                         statusValue.setText(channelResponse.getStatus());
@@ -99,12 +102,14 @@ public class SearchActivity extends ActionBarActivity {
 
                 @Override
                 public void failure(RetrofitError error) {
+                    hideKeyboard();
                     userNotFound.setVisibility(View.VISIBLE);
                     channelToSearch.setOnClickListener(onSearchFieldClickListener);
-                    Toast.makeText(SearchActivity.this, error.getCause().getMessage(), Toast.LENGTH_LONG).show();
-                    Log.i("ERROR", error.getMessage());
+                    if (error.getCause() != null && error.getMessage() != null) {
+                        Toast.makeText(SearchActivity.this, error.getCause().getMessage(), Toast.LENGTH_LONG).show();
+                        Log.i("ERROR", error.getMessage());
+                    }
                 }
-
             });
         }
     };
@@ -133,4 +138,13 @@ public class SearchActivity extends ActionBarActivity {
             userNotFound.setVisibility(View.INVISIBLE);
         }
     };
+
+    private void hideKeyboard() {
+        // Check if no view has focus:
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
 }
