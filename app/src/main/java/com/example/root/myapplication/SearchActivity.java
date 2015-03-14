@@ -109,7 +109,7 @@ public class SearchActivity extends ActionBarActivity {
             SharedPreferences settings = getSharedPreferences("SETTINGS", 0);
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt(name, 1);
-            editor.commit();
+            editor.apply();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
     };
