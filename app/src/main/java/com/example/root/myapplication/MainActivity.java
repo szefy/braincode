@@ -28,14 +28,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.channels.Channel;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends ActionBarActivity {
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
     }
 

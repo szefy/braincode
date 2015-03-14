@@ -1,5 +1,7 @@
 package com.example.root.myapplication;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -36,6 +38,7 @@ public class SearchActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         Button okButton = (Button) findViewById(R.id.s_buttonSubmitSearching);
+        Button addButton = (Button) findViewById(R.id.s_buttonAddUser);
         channelToSearch = (EditText) findViewById(R.id.s_editTextEnterSearchValue);
         logo = (ImageView) findViewById(R.id.s_imageViewUserLogo);
         username = (TextView) findViewById(R.id.s_textViewUsername);
@@ -43,7 +46,9 @@ public class SearchActivity extends ActionBarActivity {
         statusValue = (TextView) findViewById(R.id.s_textViewStatusValue);
         gameTitle = (TextView) findViewById(R.id.s_textViewGameTitle);
         gameValue = (TextView) findViewById(R.id.s_textViewGameValue);
+
         okButton.setOnClickListener(onOkClickListener);
+        addButton.setOnClickListener(onAddClickListener);
     }
 
 
@@ -100,7 +105,12 @@ public class SearchActivity extends ActionBarActivity {
 
     private View.OnClickListener onAddClickListener = new View.OnClickListener() {
         public void onClick(View v) {
-            System.out.println("TO BE CONTINUED...");
+            String name = username.getText().toString();
+            SharedPreferences settings = getSharedPreferences("SETTINGS", 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt(name, 1);
+            editor.commit();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
     };
 }
