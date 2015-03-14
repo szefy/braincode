@@ -11,15 +11,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 
 
 public class MainActivity extends ActionBarActivity {
-    ArrayAdapter<String> adapter;
-    //List<String> favourites;
+    private ListView mainListView ;
+    private ArrayAdapter<String> listAdapter ;
     String[] favourites;
 
     @Override
@@ -27,23 +29,31 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView list = (ListView) findViewById(R.id.m_listView);
+        SharedPreferences settings = getSharedPreferences("SETTINGS", 0);
+        Map<String,?> sourceMap = settings.getAll();
+        //favourites = new ArrayList<String>(sourceMap.keySet());
+        Collection<String> values = sourceMap.keySet();
+        favourites = values.toArray(new String[values.size()]);
 
-        updateFavourites();
+        mainListView = (ListView) findViewById( R.id.m_listView );
 
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item,R.id.textView2, favourites);
-        list.setAdapter(adapter);
+        ArrayList<String> favouriteList = new ArrayList<String>();
+        favouriteList.addAll( Arrays.asList(favourites) );
 
+        listAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, favouriteList);
+
+        mainListView.setAdapter( listAdapter );
+
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), ChannelActivity.class);
+                intent.putExtra("channelName", ((TextView)view).getText().toString());
+                startActivity(intent);
+            }
+        });
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        setContentView(R.layout.activity_main);
-
-        //updateFavourites();
-        //adapter.notifyDataSetChanged();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
