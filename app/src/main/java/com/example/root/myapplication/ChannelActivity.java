@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.root.myapplication.rest.RestClient;
 import com.example.root.myapplication.rest.model.ChannelResponse;
 import com.example.root.myapplication.rest.model.StreamResponse;
+import com.example.root.myapplication.rest.utils.DateTimeUtils;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -36,6 +37,8 @@ public class ChannelActivity extends ActionBarActivity {
             public void success(ChannelResponse channelResponse, Response response) {
                 textChannelName.setText(channelResponse.getName());
                 textGame.setText(channelResponse.getGame());
+                System.out.println("Long: "+DateTimeUtils.getLong(channelResponse.getCreated_at()));
+                System.out.println("SHORT: "+DateTimeUtils.getShort(channelResponse.getCreated_at()));
             }
             @Override
             public void failure(RetrofitError error) {
