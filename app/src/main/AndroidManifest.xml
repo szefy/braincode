@@ -26,5 +26,6 @@
             android:name=".ChannelActivity"
             android:label="@string/title_activity_channel" >
         </activity>
+        <service android:enabled="true" android:name=".StreamStatusService" />
     </application>
 </manifest>

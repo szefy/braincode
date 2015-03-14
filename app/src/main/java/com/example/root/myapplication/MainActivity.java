@@ -30,17 +30,11 @@ public class MainActivity extends ActionBarActivity {
 
         SharedPreferences settings = getSharedPreferences("SETTINGS", 0);
         Map<String,?> sourceMap = settings.getAll();
-        //favourites = new ArrayList<String>(sourceMap.keySet());
         Collection<String> values = sourceMap.keySet();
         favourites = values.toArray(new String[values.size()]);
 
         mainListView = (ListView) findViewById( R.id.m_listView );
-
-        ArrayList<String> favouriteList = new ArrayList<String>();
-        favouriteList.addAll( Arrays.asList(favourites) );
-
         listAdapter = new MyArrayAdapter(this, favourites);
-
         mainListView.setAdapter( listAdapter );
 
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -52,6 +46,9 @@ public class MainActivity extends ActionBarActivity {
                 finish();
             }
         });
+
+        //Service
+        startService(new Intent(this, StreamStatusService.class));
     }
 
 
